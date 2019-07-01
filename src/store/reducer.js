@@ -4,7 +4,8 @@ const defaulteState = {
 export default (state = defaulteState, action) => {
   if (action.type === "search_focus") {
     return {
-      focused: true
+      focused: true,
+      list: []
     };
   }
   if (action.type === "search_blur") {

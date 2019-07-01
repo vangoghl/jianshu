@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { IconStyle } from "../../statics/iconfont/iconfont";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import {
   HeaderWrapper,
@@ -18,6 +19,20 @@ import {
 } from "./style";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: []
+    };
+  }
+  componentDidMount = () => {
+    axios.get("/list.json").then(res => {
+      const data = res.data;
+      this.setState({
+        list: data
+      });
+    });
+  };
   getListArea = show => {
     if (show) {
       return (
@@ -25,11 +40,9 @@ class Header extends Component {
           <SearchInfoTitle>热门搜索</SearchInfoTitle>
           <SearchInfoChange>换一批</SearchInfoChange>
           <SearchInfoList>
-            <SearchInfoItem>李晨范冰冰分手</SearchInfoItem>
-            <SearchInfoItem>湖人总冠军</SearchInfoItem>
-            <SearchInfoItem>宋慧乔分手</SearchInfoItem>
-            <SearchInfoItem>詹姆斯换号</SearchInfoItem>
-            <SearchInfoItem>卡哇伊有意湖人</SearchInfoItem>
+            {this.state.list.map((item, index) => {
+              return <SearchInfoItem key={index}>{item}</SearchInfoItem>;
+            })}
           </SearchInfoList>
         </SearchInfo>
       );
