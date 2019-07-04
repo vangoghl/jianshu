@@ -39,7 +39,6 @@ export const NavItem = styled.div`
 export const NavSearch = styled.input.attrs({
   placeholder: "搜索"
 })`
-
   background: #eee;
   width: 160px;
   height: 36px;
@@ -47,14 +46,13 @@ export const NavSearch = styled.input.attrs({
   outline: none;
   border-radius: 18px;
   margin-top: 10px;
-  margin-left:20px;
+  margin-left: 20px;
   padding: 0 20px;
   box-sizing: border-box;
-  &::placeholder{
-      #999;
+  &::placeholder {
   }
-  &.facused{
-      width:240px;
+  &.facused {
+    width: 240px;
   }
 `;
 export const SearchInfo = styled.div`

@@ -1,19 +1,26 @@
-import React from "react";
-import Header from "./common/header/index";
-import Contend from "./common/content/index";
-import { GlobalStyle } from "./style";
-import { Provider } from "react-redux";
-import store from "./store";
-function App() {
-  return (
-    <div>
-      <Provider store={store}>
-        <GlobalStyle />
+import React, { Component } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+
+import Header from "./container/header";
+import HomePage from "./container/homePage";
+import DetailPage from "./container/detailPage";
+import Footer from "./container/footer";
+import "./index.css";
+
+class App extends Component {
+  render() {
+    return (
+      <div>
         <Header />
-        <Contend />
-      </Provider>
-    </div>
-  );
+        <Switch>
+          <Route path="/home" component={HomePage} />
+          <Route path="/detail" component={DetailPage} />
+          <Redirect to="/home" component={HomePage} />
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
