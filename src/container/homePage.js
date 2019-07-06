@@ -46,15 +46,19 @@ export default class HomePage extends Component {
     axios.get("/constendList.json").then(res => {
       console.log(res);
       const newList = res.data;
-      this.setState({
-        list: newList
-      });
+      if (Array.isArray(newList)) {
+        this.setState({
+          list: newList
+        });
+      }
     });
     axios.get("/constendImgUrl.json").then(res => {
       const newUrlList = res.data;
-      this.setState({
-        urlList: newUrlList
-      });
+      if (Array.isArray(newUrlList)) {
+        this.setState({
+          urlList: newUrlList
+        });
+      }
     });
   };
   render() {
