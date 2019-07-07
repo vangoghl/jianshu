@@ -4,6 +4,9 @@ import Logo from "../statics/logo.png";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import PropsTypes from "prop-types";
+import { connect } from "react-redux";
+import { increnment } from "../redux/actions";
 
 const HeaderWapper = styled.div`
   width: 100%;
@@ -84,34 +87,23 @@ const SearchWrap = styled.div`
   box-sizing: border-box;
 `;
 
-export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      focused: false,
-      list: []
-    };
-  }
+class Header extends Component {
+  static PropsTypes = {
+    focused: PropsTypes.bool.isRequired,
+    list: PropsTypes.array.isRequired
+  };
   componentDidMount = () => {
     axios.get("/list.json").then(res => {
       const newList = res.data;
-      this.setState({
-        list: newList
-      });
+      this.props.increnment(newList);
     });
   };
 
   bindInputFocus = () => {
-    let newFoused = true;
-    this.setState({
-      focused: newFoused
-    });
+    this.props.newfoused(true);
   };
   bindInputBlur = () => {
-    let newFoused = false;
-    this.setState({
-      focused: newFoused
-    });
+    this.props.newfoused(false);
   };
 
   changeOnSearch = show => {
@@ -132,6 +124,7 @@ export default class Header extends Component {
     }
   };
   render() {
+    const { focused } = this.props;
     const url =
       "https://www.jianshu.com/apps?utm_medium=desktop&utm_source=navbar-apps";
     return (
@@ -154,9 +147,9 @@ export default class Header extends Component {
               onBlur={this.bindInputBlur}
               placeholder="搜索"
               onSearch={value => console.log(value)}
-              style={this.state.focused ? { width: 260 } : { width: 200 }}
+              style={focused ? { width: 260 } : { width: 200 }}
             />{" "}
-            {this.changeOnSearch(this.state.focused)}
+            {this.changeOnSearch(focused)}
           </HeaderCentreRight>
           <HeaderCentreLift>
             <span>Aa</span>
@@ -171,3 +164,14 @@ export default class Header extends Component {
     );
   }
 }
+
+export default connect(
+  state => ({
+    focused: state.focused,
+    list: state.list
+  }),
+  {
+    increnment,
+    newfoused
+  }
+)(Header);
