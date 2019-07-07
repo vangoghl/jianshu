@@ -8,8 +8,8 @@ function counter(state = list, action) {
       return state.push(action.data);
   }
 }
-
-function foused(state = "flase", action) {
+const foused = "flase";
+function foused(state = foused, action) {
   switch (action.type) {
     case NEWFOUSED:
       return !state;
