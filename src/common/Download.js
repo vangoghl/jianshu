@@ -4,7 +4,7 @@ class Download extends Component {
   render() {
     return (
       <div>
-        <img src={require(`../../statics/app.png`)} alt="" />
+        <img src={require(`../statics/app.png`)} alt="" />
       </div>
     );
   }

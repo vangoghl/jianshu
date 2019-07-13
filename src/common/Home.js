@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import * as action from "../../redux/action";
-import IMG from "../../statics/22.jpg";
-import IMG1 from "../../statics/1.png";
-import IMG2 from "../../statics/2.png";
-import IMG3 from "../../statics/3.png";
-import IMG4 from "../../statics/4.png";
-import IMG5 from "../../statics/erweima.png";
+import * as action from "../redux/action";
+import IMG from "../statics/22.jpg";
+import IMG1 from "../statics/1.png";
+import IMG2 from "../statics/2.png";
+import IMG3 from "../statics/3.png";
+import IMG4 from "../statics/4.png";
+import IMG5 from "../statics/erweima.png";
 
 const HomeWrappe = styled.div`
   width: 960px;
@@ -214,7 +214,7 @@ class Home extends Component {
                   <HomeListRight>
                     <img
                       className="img1"
-                      src={require(`../../statics/${item.imgUrl}`)}
+                      src={require(`../statics/${item.imgUrl}`)}
                       alt=""
                     />
                   </HomeListRight>
@@ -248,7 +248,7 @@ class Home extends Component {
                 <div className="listList" key={item.id}>
                   <img
                     className="listImg"
-                    src={require(`../../statics/touxiang/${item.imgUrl}`)}
+                    src={require(`../statics/touxiang/${item.imgUrl}`)}
                     alt=""
                   />
                   <div className="listText">

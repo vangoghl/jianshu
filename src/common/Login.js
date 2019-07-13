@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as action from "../../redux/action";
+import * as action from "../redux/action";
 
-const RegisterWrapper = styled.div`
+const LoginWrapper = styled.div`
   width: 100%;
   height: 100%;
   min-height: 750px;
@@ -15,7 +15,7 @@ const RegisterWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const RegisterRegister = styled.div`
+const LoginLogin = styled.div`
   width: 400px;
   padding: 50px 50px 30px;
   background-color: #fff;
@@ -51,12 +51,14 @@ const RegisterRegister = styled.div`
   }
 `;
 
-class Register extends Component {
+class Login extends Component {
   render() {
+    console.log("11", this.props);
+
     if (!this.props.focused) {
       return (
-        <RegisterWrapper>
-          <RegisterRegister>
+        <LoginWrapper>
+          <LoginLogin>
             <input
               placeholder="账号"
               ref={input => {
@@ -72,35 +74,33 @@ class Register extends Component {
             />
             <button
               onClick={() =>
-                this.props.bindleRegister(this.account, this.password)
+                this.props.bindleLogin(this.account, this.password)
               }
             >
-              注册
+              登录
             </button>
-          </RegisterRegister>
-        </RegisterWrapper>
+          </LoginLogin>
+        </LoginWrapper>
       );
     } else {
-      return <Redirect to="/login" />;
+      return <Redirect to="/" />;
     }
   }
 }
 const mapStateToProps = state => {
   return {
-    focused: state.register.focused
+    focused: state.login.focused
   };
 };
 const mapDispacthToProps = dispacth => {
   return {
-    bindleRegister(accountElm, passwordElm) {
-      console.log("33");
-
+    bindleLogin(accountElm, passwordElm) {
       console.log(accountElm.value, passwordElm.value);
-      dispacth(action.bindleRegister(accountElm.value, passwordElm.value));
+      dispacth(action.bindleLogin(accountElm.value, passwordElm.value));
     }
   };
 };
 export default connect(
   mapStateToProps,
   mapDispacthToProps
-)(Register);
+)(Login);

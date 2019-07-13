@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import * as action from "../../redux/action";
+import * as action from "../redux/action";
 
 const DetailWrapper = styled.div`
   width: 625px;
@@ -36,7 +36,7 @@ class Detail extends Component {
             return (
               <DetailHeader key={item.id}>
                 <h1>{item.title}</h1>
-                <img src={require(`../../statics/${item.imgUrl}`)} alt="" />
+                <img src={require(`../statics/${item.imgUrl}`)} alt="" />
                 <p>{item.desc}</p>
               </DetailHeader>
             );

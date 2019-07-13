@@ -3,13 +3,13 @@ import { Provider } from "react-redux";
 import { Route, BrowserRouter } from "react-router-dom";
 
 import store from "./redux/store";
-import Header from "./common/header/Header";
-import Home from "./common/home/Home";
-import Detail from "./common/detail/Detail";
-import Login from "./common/login/Login";
-import Write from "./common/write/write";
-import Register from "./common/register/Register";
-import Download from "./common/download/Download";
+import Header from "./common/Header";
+import Home from "./common/Home";
+import Detail from "./common/Detail";
+import Login from "./common/Login";
+import Write from "./common/write";
+import Register from "./common/Register";
+import Download from "./common/Download";
 
 import "./App.css";
 
