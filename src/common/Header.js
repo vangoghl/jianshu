@@ -195,8 +195,6 @@ class Header extends Component {
     }
   };
   render() {
-    console.log(this.props);
-
     return (
       <HeaderWrapper>
         <HeaderLift>
@@ -261,7 +259,6 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     focused: state.header.focused,
     list: state.header.list,
@@ -274,7 +271,6 @@ const mapStateToProps = state => {
 const mapDispathToProps = dispatch => {
   return {
     bindleFocus() {
-      console.log();
       dispatch(action.getList());
       dispatch(action.searchFocus());
     },

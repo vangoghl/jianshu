@@ -13,7 +13,8 @@ import {
   LOGINFOCUSED,
   BINDLELOGINFOCUSED,
   OUTFOCUSED,
-  BINDLEREGISTERFOCUSED
+  BINDLEREGISTERFOCUSED,
+  UNPAGE
 } from "./action-type";
 import axios from "axios";
 
@@ -43,7 +44,7 @@ const changegetlist = data => ({
 export const getList = () => {
   return dispatch => {
     axios
-      .get("/api/headerList.json")
+      .get("http://101.132.64.131:8080/header")
       .then(res => {
         const data = res.data;
         dispatch(changegetlist(data.data));
@@ -61,9 +62,10 @@ const changenewlist = data => ({
 export const newList = () => {
   return dispatch => {
     axios
-      .get("/api/constendList.json")
+      .get("http://101.132.64.131:8080/content?page=0")
       .then(res => {
         const data = res.data;
+
         dispatch(changenewlist(data));
       })
       .catch(() => {
@@ -79,10 +81,9 @@ const changenewlist1 = data => ({
 export const newList1 = () => {
   return dispatch => {
     axios
-      .get("/api/zuozhe.json")
+      .get("http://101.132.64.131:8080/author")
       .then(res => {
         const data = res.data;
-
         dispatch(changenewlist1(data));
       })
       .catch(() => {
@@ -90,19 +91,20 @@ export const newList1 = () => {
       });
   };
 };
-const changeGetMoreList = (data, nextPage) => ({
+const changeGetMoreList = (data, nextpage) => ({
   type: GETMORELIST,
   data: data,
-  nextPage
+  page: nextpage
 });
 
 export const getMoreList = page => {
+  const nextpage = page + 1;
   return dispatch => {
     axios
-      .get("/api/constendList1.json?=" + page)
+      .get("http://101.132.64.131:8080/content?page=" + nextpage)
       .then(res => {
         const data = res.data;
-        dispatch(changeGetMoreList(data, page + 1));
+        dispatch(changeGetMoreList(data, nextpage));
       })
       .catch(() => {
         console.log("error");
@@ -114,25 +116,10 @@ export const changeScrollTopShow = Show => ({
   Show
 });
 
-const changeGetDetailList = data => ({
+export const getDetailList = id => ({
   type: GETDETAILLIST,
-  data: data
+  id: id
 });
-
-export const getDetailList = () => {
-  return dispatch => {
-    axios
-      .get("/api/constendList.json")
-      .then(res => {
-        const data = res.data;
-
-        dispatch(changeGetDetailList(data));
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  };
-};
 
 export const loginFocused = () => ({
   type: LOGINFOCUSED
@@ -147,9 +134,14 @@ export const bindleLoginFocused = () => ({
 export const bindleLogin = (account, password) => {
   return dispatch => {
     axios
-      .get("/api/login.json?account=" + account + "&password" + password)
+      .get(
+        "http://101.132.64.131:8080/author?account=" +
+          account +
+          "&password" +
+          password
+      )
       .then(res => {
-        const result = res.data.data;
+        const result = true;
         if (result) {
           dispatch(bindleLoginFocused());
         } else {
@@ -166,9 +158,14 @@ const bindleRegisterFocused = () => ({
 export const bindleRegister = (account, password) => {
   return dispatch => {
     axios
-      .get("/api/login.json?account=" + account + "&password" + password)
+      .get(
+        "http://101.132.64.131:8080/author?account=" +
+          account +
+          "&password" +
+          password
+      )
       .then(res => {
-        const result = res.data.data;
+        const result = true;
         if (result) {
           dispatch(bindleRegisterFocused());
         } else {
@@ -177,3 +174,7 @@ export const bindleRegister = (account, password) => {
       });
   };
 };
+
+export const unPage = () => ({
+  type: UNPAGE
+});

@@ -14,7 +14,8 @@ import {
   LOGINFOCUSED,
   BINDLELOGINFOCUSED,
   OUTFOCUSED,
-  BINDLEREGISTERFOCUSED
+  BINDLEREGISTERFOCUSED,
+  UNPAGE
 } from "./action-type";
 
 const defaultState = {
@@ -65,7 +66,7 @@ const headerReducer = (state = defaultState, action) => {
 const homeState = {
   list: [],
   list1: [],
-  page: 1,
+  page: 0,
   Show: false
 };
 
@@ -79,26 +80,32 @@ const homeReducer = (state = homeState, action) => {
       return {
         ...state,
         list: state.list.concat(action.data),
-        page: action.nextPage
+        page: state.nextpage
       };
     case SCROLLTOPSHOW:
       return {
         ...state,
         Show: action.Show
       };
+
+    case UNPAGE:
+      return {
+        ...state,
+        page: 0
+      };
     default:
       return { ...state };
   }
 };
 const detailState = {
-  list: []
+  id: 0
 };
 const detailReducer = (state = detailState, action) => {
   switch (action.type) {
     case GETDETAILLIST:
       return {
         ...state,
-        list: action.data
+        id: action.id
       };
     default:
       return { ...state };

@@ -22,13 +22,11 @@ const DetailHeader = styled.div`
     margin-bottom: 30px;
   }
 `;
-
 class Detail extends Component {
-  componentDidMount = () => {
-    this.props.getDetailList();
-  };
+  componentWillUnmount() {
+    this.props.unPage();
+  }
   render() {
-    console.log(this.props.match.params.id);
     return (
       <DetailWrapper>
         {this.props.list.map(item => {
@@ -50,17 +48,20 @@ class Detail extends Component {
 }
 const mapStateToProps = state => {
   return {
-    list: state.detail.list
+    list: state.home.list,
+    id: state.detail.id
   };
 };
-const mapDispacthToProps = dispatch => {
+
+const mapDispathToProps = dispatch => {
   return {
-    getDetailList() {
-      dispatch(action.getDetailList());
+    unPage() {
+      dispatch(action.unPage());
     }
   };
 };
+
 export default connect(
   mapStateToProps,
-  mapDispacthToProps
+  mapDispathToProps
 )(Detail);

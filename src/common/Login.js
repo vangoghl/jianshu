@@ -53,8 +53,6 @@ const LoginLogin = styled.div`
 
 class Login extends Component {
   render() {
-    console.log("11", this.props);
-
     if (!this.props.focused) {
       return (
         <LoginWrapper>
@@ -95,7 +93,6 @@ const mapStateToProps = state => {
 const mapDispacthToProps = dispacth => {
   return {
     bindleLogin(accountElm, passwordElm) {
-      console.log(accountElm.value, passwordElm.value);
       dispacth(action.bindleLogin(accountElm.value, passwordElm.value));
     }
   };

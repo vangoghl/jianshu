@@ -193,20 +193,19 @@ class Home extends Component {
   }
 
   render() {
-    const { getMoreList, page, list1, Show, getDetailNum } = this.props;
-
+    const { getMoreList, page, list, list1, Show, getDetailList } = this.props;
     return (
       <HomeWrappe>
         <HomeLeft>
           <img className="img" src={IMG} alt="" />
-          {this.props.list.map(item => {
+          {list.map(item => {
             return (
               <Link
                 key={item.id}
                 style={{ color: "#333" }}
                 to={"/detail/" + item.id}
               >
-                <HomeLeftList onClick={getDetailNum(item.id)}>
+                <HomeLeftList onClick={getDetailList(item.id)}>
                   <HomeListLeft>
                     <HomeListLeftTitle>{item.title}</HomeListLeftTitle>
                     <HomeListLeftText>{item.desc}</HomeListLeftText>
@@ -297,7 +296,9 @@ const mapDispathToProps = dispatch => {
         dispatch(action.changeScrollTopShow(false));
       }
     },
-    getDetailNum(id) {}
+    getDetailList(id) {
+      dispatch(action.getDetailList(id));
+    }
   };
 };
 
