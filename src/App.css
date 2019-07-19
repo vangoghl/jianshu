@@ -124,3 +124,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 270px;
+  line-height: 270px;
+  overflow: hidden;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  background: red;
+}

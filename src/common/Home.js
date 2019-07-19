@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Carousel } from "antd";
 
 import * as action from "../redux/action";
 import IMG from "../statics/22.jpg";
+import IMG11 from "../statics/11.png";
 import IMG1 from "../statics/1.png";
 import IMG2 from "../statics/2.png";
 import IMG3 from "../statics/3.png";
@@ -19,11 +21,15 @@ const HomeWrappe = styled.div`
 
 const HomeLeft = styled.div`
   width: 650px;
-  .img {
+  .lunbotu {
     margin-top: 30px;
     width: 625px;
     height: 270px;
     margin-bottom: 10px;
+    img {
+      width: 625px;
+      height: 270px;
+    }
   }
 `;
 
@@ -197,7 +203,16 @@ class Home extends Component {
     return (
       <HomeWrappe>
         <HomeLeft>
-          <img className="img" src={IMG} alt="" />
+          <div className="lunbotu">
+            <Carousel autoplay>
+              <div>
+                <img className="img" src={IMG} alt="" />{" "}
+              </div>
+              <div>
+                <img className="img" src={IMG11} alt="" />{" "}
+              </div>
+            </Carousel>
+          </div>
           {list.map(item => {
             return (
               <Link
@@ -221,7 +236,6 @@ class Home extends Component {
               </Link>
             );
           })}
-
           <HomeLeftBtn onClick={() => getMoreList(page)}>阅读更多</HomeLeftBtn>
         </HomeLeft>
         <HomeRight>
