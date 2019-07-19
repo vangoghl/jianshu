@@ -44,7 +44,7 @@ const changegetlist = data => ({
 export const getList = () => {
   return dispatch => {
     axios
-      .get("http://101.132.64.131:8080/header")
+      .get("https://chaos.chaox.now.sh/header")
       .then(res => {
         const data = res.data;
         dispatch(changegetlist(data.data));
@@ -62,7 +62,7 @@ const changenewlist = data => ({
 export const newList = () => {
   return dispatch => {
     axios
-      .get("http://101.132.64.131:8080/content?page=0")
+      .get("https://chaos.chaox.now.sh/content")
       .then(res => {
         const data = res.data;
 
@@ -81,7 +81,7 @@ const changenewlist1 = data => ({
 export const newList1 = () => {
   return dispatch => {
     axios
-      .get("http://101.132.64.131:8080/author")
+      .get("https://chaos.chaox.now.sh/author")
       .then(res => {
         const data = res.data;
         dispatch(changenewlist1(data));
@@ -101,7 +101,7 @@ export const getMoreList = page => {
   const nextpage = page + 1;
   return dispatch => {
     axios
-      .get("http://101.132.64.131:8080/content?page=" + nextpage)
+      .get("https://chaos.chaox.now.sh/content?page=" + nextpage)
       .then(res => {
         const data = res.data;
         dispatch(changeGetMoreList(data, nextpage));
@@ -135,7 +135,7 @@ export const bindleLogin = (account, password) => {
   return dispatch => {
     axios
       .get(
-        "http://101.132.64.131:8080/author?account=" +
+        "https://chaos.chaox.now.sh/author?account=" +
           account +
           "&password" +
           password
@@ -159,7 +159,7 @@ export const bindleRegister = (account, password) => {
   return dispatch => {
     axios
       .get(
-        "http://101.132.64.131:8080/author?account=" +
+        "https://chaos.chaox.now.sh/author?account=" +
           account +
           "&password" +
           password

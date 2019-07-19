@@ -30,7 +30,7 @@ class Detail extends Component {
     return (
       <DetailWrapper>
         {this.props.list.map(item => {
-          if (item.id === this.props.match.params.id) {
+          if (item.id * 1 === this.props.match.params.id * 1) {
             return (
               <DetailHeader key={item.id}>
                 <h1>{item.title}</h1>
